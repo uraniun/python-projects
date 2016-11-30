@@ -26,7 +26,7 @@ def read_database():
     Reads data from all .csv files and creates database
     :return: database object
     """
-    file_list = glob.glob('csv_files/*.csv')  # retrieving list of files
+    file_list = glob.glob('csv_files/*.csv')  # retrieving list of files (check for your file structure)
     database_input_dict = {}
     for file in file_list:
         table = read_table(file)  # for each file create table
