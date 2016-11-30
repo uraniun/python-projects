@@ -57,7 +57,7 @@ assert is_database(d), \
        'Creating an empty database is working incorrectly.'
 
 # typecheck the reading.py functions
-result = reading.read_table('books.csv')
+result = reading.read_table('csv_files/books.csv')
 assert is_table(result), \
     'read_table should return a table; please check the handout \
     for the definition of a table.'
@@ -68,16 +68,16 @@ assert is_database(result), \
     'read_database should return a database; please check the handout \
     for the definition of a database.'
 
-# # typecheck the required squeal.py function
-# import squeal
-# d1 = {'a': ['b', 'c']}
-# d2 = {'d': ['e', 'f']}
-# t1 = Table()
-# t2 = Table()
-# t1.set_dict(d1)
-# t2.set_dict(d2)
-#
-# result = squeal.cartesian_product(t1, t2)
-# assert is_table(result), \
-#     'cartesian_product should return a table; please check the handout \
-#     for the definition of a table.'
+# typecheck the required squeal.py function
+import squeal
+d1 = {'a': ['b', 'c']}
+d2 = {'d': ['e', 'f']}
+t1 = Table()
+t2 = Table()
+t1.set_dict(d1)
+t2.set_dict(d2)
+
+result = squeal.cartesian_product(t1, t2)
+assert is_table(result), \
+    'cartesian_product should return a table; please check the handout \
+    for the definition of a table.'
