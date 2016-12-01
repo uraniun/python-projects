@@ -2,7 +2,6 @@
 
 import csv
 import glob
-import pandas
 from database import *
 
 
