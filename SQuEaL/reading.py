@@ -1,5 +1,6 @@
 # Functions for reading tables and databases
 
+import csv
 import glob
 import pandas
 from database import *
@@ -14,12 +15,18 @@ def read_table(filename):
     :return: table object
     """
     table_input_dict = {}
-    file_df = pandas.read_csv(filename, dtype=str)  # using pandas to read data from csv
-    csv_headers = file_df.columns.values  # getting table headers
-    for header in csv_headers:
-        table_input_dict[header] = list(file_df[header])  # for each header read column info
+    with open(filename, 'r') as csvfile:
+        # get cols headers
+        header_row = csvfile.readline().rstrip().split(",")
+        reader = csv.reader(csvfile)
+        # go to next line
+        for row in reader:
+            for idx,header in enumerate(header_row):
+                if header in table_input_dict:
+                    table_input_dict[header].append(row[idx].lstrip().rstrip())  # clean row item from spaces
+                else:
+                    table_input_dict[header] = [row[idx].lstrip().rstrip()]
     return Table(table_input_dict)
-
 
 def read_database():
     """
